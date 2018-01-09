@@ -13,10 +13,12 @@ const durations = {
 class MusicalScore {
   soundbank : string;
   tracks : Array<{instrument : string, notes : string }>;
+  stopped : boolean;
 
   constructor(soundbank : string) {
     this.soundbank = soundbank;
     this.tracks = [];
+    this.stopped = true;
   }
 
   playNote(instrument : string, n : string) {
@@ -31,7 +33,7 @@ class MusicalScore {
         tm += durations[n[n.length - 1]];
     });
 
-    if (loop) {
+    if (!this.stopped && loop) {
         setTimeout(() => this.playTrack(instrument, notes, true), tm);
     }
   }
@@ -41,7 +43,12 @@ class MusicalScore {
   }
 
   play(loop : boolean = false)  {
+    this.stopped = !loop;
     this.tracks.forEach(track => this.playTrack(track.instrument, track.notes, loop));
+  }
+
+  stop() {
+    this.stopped = true;
   }
 }
 
