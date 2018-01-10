@@ -22,6 +22,7 @@ class MusicalScore {
   }
 
   playNote(instrument : string, n : string) {
+    if (n[0] === 'R') { return; }
     //$FlowFixMe
     new Audio(this.soundbank + instrument + "/" + encodeURIComponent(n) + ".ogg").play();
   }
