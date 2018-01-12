@@ -1,6 +1,6 @@
 {
   "name": "musical-score",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "plays midi-like music using a soundbank",
   "main": "lib/index.js",
   "files": [
